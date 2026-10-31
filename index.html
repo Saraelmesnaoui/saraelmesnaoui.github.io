@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -5,21 +6,254 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sara El Mesnaoui - E-Portfolio ENSEEIHT</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 0; padding: 0; color: #333; background-color: #f4f4f9; }
-        header { background: #2c3e50; color: #fff; padding: 2rem 0; text-align: center; }
-        header h1 { margin: 0; font-size: 2.5rem; }
-        header p { margin: 10px 0 0; font-size: 1.2rem; color: #bdc3c7; }
-        nav { background: #34495e; color: #fff; display: flex; justify-content: center; flex-wrap: wrap; }
-        nav a { color: #fff; text-decoration: none; padding: 15px 20px; display: block; }
-        nav a:hover { background: #2c3e50; }
-        .container { width: 80%; margin: auto; overflow: hidden; padding: 2rem 0; }
-        .card { background: #fff; padding: 2rem; margin-bottom: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .card h2 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
-        .skills-list, .awards-list { display: flex; gap: 15px; flex-wrap: wrap; list-style: none; padding: 0; }
-        .skills-list li { background: #3498db; color: #fff; padding: 8px 15px; border-radius: 5px; font-weight: bold; }
-        .awards-list { flex-direction: column; gap: 10px; }
-        .awards-list li { background: #ecf0f1; padding: 10px 15px; border-left: 4px solid #f1c40f; border-radius: 4px; }
+        /* CSS Variables for a cool blue theme */
+        :root {
+            --primary-blue: #1e3a8a;
+            --secondary-blue: #3b82f6;
+            --accent-blue: #60a5fa;
+            --light-blue: #eff6ff;
+            --dark-blue: #0f172a;
+            --text-main: #334155;
+            --text-light: #94a3b8;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+        }
+
+        body { 
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            line-height: 1.6; 
+            margin: 0; 
+            padding: 0; 
+            color: var(--text-main); 
+            background-color: var(--bg-color); 
+            scroll-behavior: smooth;
+        }
+
+        /* Header with gradient and subtle animation */
+        header { 
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue)); 
+            color: #fff; 
+            padding: 4rem 0; 
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Decorative background elements in header */
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -10%;
+            width: 50%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.05);
+            transform: rotate(30deg);
+            pointer-events: none;
+        }
+
+        header h1 { 
+            margin: 0; 
+            font-size: 3rem; 
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        header p { 
+            margin: 15px 0 0; 
+            font-size: 1.3rem; 
+            color: var(--light-blue); 
+            opacity: 0.9;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        /* Sticky Navigation with hover effects */
+        nav { 
+            background: var(--dark-blue); 
+            display: flex; 
+            justify-content: center; 
+            flex-wrap: wrap; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a { 
+            color: #fff; 
+            text-decoration: none; 
+            padding: 18px 24px; 
+            display: block; 
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        /* Underline animation on hover */
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 50%;
+            background-color: var(--accent-blue);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        nav a:hover { 
+            color: var(--accent-blue);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .container { 
+            width: 85%; 
+            max-width: 1100px; 
+            margin: auto; 
+            padding: 3rem 0; 
+        }
+
+        /* Cards with hover lift effect */
+        .card { 
+            background: var(--card-bg); 
+            padding: 2.5rem; 
+            margin-bottom: 2.5rem; 
+            border-radius: 12px; 
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-top: 4px solid var(--secondary-blue);
+        }
+
+        .card h2 { 
+            color: var(--primary-blue); 
+            border-bottom: 2px solid var(--light-blue); 
+            padding-bottom: 12px; 
+            margin-top: 0; 
+            font-size: 2rem;
+            position: relative;
+        }
+        
+        /* Decorative dot next to h2 */
+        .card h2::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background-color: var(--secondary-blue);
+            border-radius: 2px;
+        }
+
+        h3 { 
+            color: var(--secondary-blue); 
+            margin-top: 2rem; 
+            font-size: 1.4rem;
+        }
+
+        /* Styled Skills Tags */
+        .skills-list { 
+            display: flex; 
+            gap: 12px; 
+            flex-wrap: wrap; 
+            list-style: none; 
+            padding: 0; 
+        }
+
+        .skills-list li { 
+            background: var(--light-blue); 
+            color: var(--primary-blue); 
+            padding: 10px 18px; 
+            border-radius: 20px; 
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.2s ease;
+            cursor: default;
+        }
+
+        .skills-list li:hover {
+            background: var(--secondary-blue);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Enhanced Awards List */
+        .awards-list { 
+            display: flex;
+            flex-direction: column; 
+            gap: 15px; 
+            list-style: none; 
+            padding: 0;
+        }
+
+        .awards-list li { 
+            background: #fff; 
+            padding: 15px 20px; 
+            border-left: 5px solid #f59e0b; /* Gold accent for awards */
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+        }
+        
+        .awards-list li:hover {
+            transform: translateX(5px);
+        }
+
+        /* Professional Buttons */
+        .cv-buttons { 
+            display: flex; 
+            gap: 20px; 
+            margin-top: 30px; 
+        }
+
+        .btn { 
+            display: inline-flex; 
+            align-items: center;
+            justify-content: center;
+            background: var(--secondary-blue); 
+            color: #fff; 
+            padding: 12px 24px; 
+            text-decoration: none; 
+            border-radius: 8px; 
+            font-weight: bold; 
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn:hover { 
+            background: var(--primary-blue); 
+            box-shadow: 0 6px 12px rgba(30, 58, 138, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
+    <!-- Adding a modern font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -32,22 +266,23 @@
         <a href="#welcome">Welcome</a>
         <a href="#engineering">Engineering course</a>
         <a href="#mobility">International Mobility</a>
-        <a href="#sustainability">Sustainability & Civic Engagement</a>
+        <a href="#sustainability">Civic Engagement</a>
         <a href="#sport">Sport & other activities</a>
         <a href="#career">Career Development</a>
     </nav>
 
     <div class="container">
+        
         <!-- Section Welcome -->
         <div id="welcome" class="card">
             <h2>Welcome : À propos de moi</h2>
-            <p>Actuellement élève ingénieure au sein du département 3EA (Électronique, Énergie Électrique et Automatique) de l'ENSEEIHT, je suis animée par une forte passion pour les mathématiques appliquées et la recherche scientifique. Mon parcours académique, débuté par un Baccalauréat Sciences Maths B au Lycée Mohammed V de Casablanca et consolidé par une classe préparatoire MP au LYMED (2024-2026), est marqué par l'excellence en mathématiques de compétition.</p>
+            <p>Actuellement élève ingénieure au sein du département 3EA (Électronique, Énergie Électrique et Automatique) de l'ENSEEIHT, je suis animée par une forte passion pour les mathématiques appliquées et la recherche scientifique. Mon parcours académique, débuté par un Baccalauréat Sciences Maths B au Lycée Mohammed V de Casablanca et consolidé par une classe préparatoire MP au Lycée Méditerranéen (LYMED) de Tétouan, est marqué par l'excellence en mathématiques de compétition.</p>
             
             <h3>Palmarès et Distinctions</h3>
             <ul class="awards-list">
-                <li><strong>Médailles d'Or et d'Argent (2024) :</strong> Olympiades Panafricaines de Mathématiques (PAMO) en Afrique du Sud, en tant que membre de l'équipe nationale.</li>
-                <li><strong>Mention Honorable (2024) :</strong> Olympiades Asiatiques du Pacifique de Mathématiques (APMO), avec l'équipe nationale.</li>
-                <li><strong>GTF Star Program (2023) :</strong> Sélectionnée par le Global Talent Fund pour ce programme d'excellence.</li>
+                <li><strong>Médailles d'Or et d'Argent (2024) :</strong> Olympiades Panafricaines de Mathématiques (PAMO) en Afrique du Sud, avec l'équipe nationale.</li>
+                <li><strong>Mention Honorable (2024) :</strong> Olympiades Asiatiques du Pacifique de Mathématiques (APMO).</li>
+                <li><strong>GTF Star Program (2023) :</strong> Participation au programme d'excellence du Global Talent Fund.</li>
                 <li><strong>Top 5 Régional (2021) :</strong> Olympiades de Mathématiques (Région Casablanca-Settat).</li>
             </ul>
 
@@ -55,7 +290,7 @@
             <p>Je me distingue par ma capacité à faire le pont entre la théorie mathématique fondamentale et ses applications physiques concrètes. Je m'intéresse particulièrement à la modélisation et à la résolution de problématiques complexes en électronique, en physique quantique et en électromagnétisme.</p>
             
             <h3>Mon Objectif Professionnel</h3>
-            <p>Désireuse d'approfondir mes connaissances et de participer activement à l'innovation technologique, je suis à la recherche d'un stage au sein d'un laboratoire de recherche. Cet environnement me permettra de mettre à profit mon esprit critique et mes compétences en programmation pour contribuer à des travaux scientifiques de pointe.</p>
+            <p>Désireuse d'approfondir mes connaissances et de participer activement à l'innovation technologique, je suis à la recherche d'un stage au sein d'un laboratoire de recherche. Cet environnement me permettra de mettre à profit mon esprit critique et ma rigueur pour contribuer à des travaux scientifiques de pointe.</p>
         </div>
 
         <!-- Section Engineering Course -->
@@ -68,9 +303,52 @@
                 <li>C++</li>
                 <li>SQL</li>
             </ul>
-            <p><strong>Domaines d'expertise :</strong> Mathématiques appliquées, Électromagnétisme, Physique quantique, Électronique.</p>
+            <p><strong>Domaines d'expertise théorique :</strong> Mathématiques appliquées, Électromagnétisme, Physique quantique, Électronique.</p>
+            <p><em>Projets académiques ENSEEIHT : En cours de réalisation.</em></p>
         </div>
-    </div>
 
+        <!-- Section International Mobility -->
+        <div id="mobility" class="card">
+            <h2>International Mobility</h2>
+            <p>Mon projet professionnel étant intrinsèquement lié à la recherche scientifique de haut niveau, je cible des écosystèmes internationaux reconnus pour leur excellence technologique :</p>
+            <ul>
+                <li><strong>L'Allemagne :</strong> C'est une destination privilégiée pour ma mobilité. Mon apprentissage de l'allemand (LV2) facilitera mon intégration dans ce pays qui abrite des instituts de recherche pionniers en ingénierie et en sciences fondamentales.</li>
+                <li><strong>États-Unis et Canada :</strong> Ces pays figurent au sommet des classements mondiaux en matière de recherche scientifique. Les laboratoires nord-américains offrent des environnements de pointe en électromagnétisme et physique quantique, ce qui correspond parfaitement à mes ambitions de recherche.</li>
+            </ul>
+        </div>
+
+        <!-- Section Sustainability & Civic Engagement -->
+        <div id="sustainability" class="card">
+            <h2>Sustainability & Civic Engagement</h2>
+            <p><strong>Association Maths Maroc (Pôle Olympiades) | Depuis 2023</strong></p>
+            <p>Consciente de l'importance du partage des connaissances, je suis activement engagée au sein de l'Association Maths Maroc. J'interviens dans le pôle Olympiades où je participe à l'accompagnement et à la préparation des jeunes talents marocains pour les compétitions mathématiques. Cet engagement civique me permet de contribuer à l'émergence de la prochaine génération de scientifiques tout en promouvant l'excellence académique.</p>
+        </div>
+
+        <!-- Section Sport & other activities -->
+        <div id="sport" class="card">
+            <h2>Sport & other activities</h2>
+            <p><strong>Gymnastique :</strong> Je pratique la gymnastique, un sport exigeant qui cultive ma discipline, ma persévérance et mon sens de l'équilibre. Ces qualités sportives renforcent ma résilience face aux défis complexes rencontrés dans mon parcours scientifique et académique.</p>
+        </div>
+
+        <!-- Section Career Development -->
+        <div id="career" class="card">
+            <h2>Career Development</h2>
+            
+            <h3>Expérience Professionnelle</h3>
+            <p><strong>Professeure de soutien en mathématiques | École LES EXPERTS, Casablanca (2021 - 2024)</strong><br>
+            Accompagnement de collégiens dans l'apprentissage et l'approfondissement des mathématiques. Cette expérience m'a permis de forger une excellente <strong>capacité d'adaptation</strong> face aux différents profils d'élèves, tout en développant ma communication pédagogique.</p>
+
+            <h3>Mon Curriculum Vitae</h3>
+            <p>Consultez mon parcours détaillé et mes compétences en téléchargeant mon CV :</p>
+            <div class="cv-buttons">
+                <a href="cv_fr.pdf" class="btn" target="_blank">📄 CV en Français</a>
+                <a href="cv_en.pdf" class="btn" target="_blank">📄 CV in English</a>
+            </div>
+            
+            <br>
+            <p><em>Unique Value Proposal (Vidéo Pitch) : Bientôt disponible.</em></p>
+        </div>
+
+    </div>
 </body>
 </html>
